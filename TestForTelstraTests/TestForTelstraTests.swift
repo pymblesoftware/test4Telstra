@@ -19,9 +19,18 @@ class TestForTelstraTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFetch() {
+
+        let expect = expectation(description: "Fetch Succeeds")
+        
+        let interactor = DataModelInteractor()
+        
+        interactor.fetch { _ in
+            expect.fulfill()
+            print( "Fetched" )
+        }
+        waitForExpectations(timeout: 3.0) { (_) -> Void in
+        }
     }
 
     func testPerformanceExample() {
